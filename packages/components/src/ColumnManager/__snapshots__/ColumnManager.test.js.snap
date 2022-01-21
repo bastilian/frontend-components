@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColumnManager expect to render without error 1`] = `
+<Modal
+  actions={
+    Array [
+      <Button
+        onClick={[Function]}
+        variant="primary"
+      >
+        Save
+      </Button>,
+      <Button
+        onClick={[Function]}
+        variant="secondary"
+      >
+        Cancel
+      </Button>,
+    ]
+  }
+  appendTo={[Function]}
+  aria-describedby=""
+  aria-label=""
+  aria-labelledby=""
+  className=""
+  description={
+    <TextContent>
+      <Text
+        component="p"
+      >
+        Selected categories will be displayed in the table.
+      </Text>
+      <Button
+        isInline={true}
+        onClick={[Function]}
+        variant="link"
+      >
+        Select all
+      </Button>
+    </TextContent>
+  }
+  hasNoBodyWrapper={false}
+  isOpen={false}
+  onClose={[Function]}
+  ouiaSafe={true}
+  showClose={true}
+  title="Manage columns"
+  titleIconVariant={null}
+  titleLabel=""
+  variant="small"
+>
+  <DataList
+    aria-label="Table column management"
+    className=""
+    gridBreakpoint="md"
+    id="table-column-management"
+    isCompact={true}
+    selectedDataListItemId=""
+    wrapModifier={null}
+  >
+    <ColumnManagerListItem
+      column={
+        Object {
+          "exportKey": "id",
+          "sortByProperty": "id",
+          "title": "ID",
+        }
+      }
+      id="column-0"
+      isDisabled={true}
+      isSelected={false}
+      key="column-0"
+      onChange={[Function]}
+    />
+    <ColumnManagerListItem
+      column={
+        Object {
+          "exportKey": "name",
+          "renderFunc": [Function],
+          "sortByProperty": "name",
+          "title": "Name",
+        }
+      }
+      id="column-1"
+      isDisabled={false}
+      isSelected={false}
+      key="column-1"
+      onChange={[Function]}
+    />
+    <ColumnManagerListItem
+      column={
+        Object {
+          "exportKey": "name",
+          "renderExport": [Function],
+          "sortByProperty": "name",
+          "title": "Another Name column",
+        }
+      }
+      id="column-2"
+      isDisabled={false}
+      isSelected={false}
+      key="column-2"
+      onChange={[Function]}
+    />
+    <ColumnManagerListItem
+      column={
+        Object {
+          "renderExport": [Function],
+          "sortByProperty": "description",
+          "title": "Description",
+        }
+      }
+      id="column-3"
+      isDisabled={false}
+      isSelected={false}
+      key="column-3"
+      onChange={[Function]}
+    />
+    <ColumnManagerListItem
+      column={
+        Object {
+          "exportKey": "severity",
+          "renderFunc": [Function],
+          "sortByFunction": [Function],
+          "title": "Severity sorted by function",
+        }
+      }
+      id="column-4"
+      isDisabled={false}
+      isSelected={false}
+      key="column-4"
+      onChange={[Function]}
+    />
+    <ColumnManagerListItem
+      column={
+        Object {
+          "exportKey": "severity",
+          "renderFunc": [Function],
+          "sortByArray": Array [
+            "high",
+            "medium",
+            "low",
+            "unknown",
+          ],
+          "sortByProperty": "severity",
+          "title": "Severity by Array",
+        }
+      }
+      id="column-5"
+      isDisabled={false}
+      isSelected={false}
+      key="column-5"
+      onChange={[Function]}
+    />
+  </DataList>
+</Modal>
+`;

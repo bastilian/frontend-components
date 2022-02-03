@@ -164,3 +164,5 @@ export const useBulkSelectWithItems = ({ onSelect, items: propItems, filter, pag
       }
     : {};
 };
+
+export default useBulkSelect;

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
 const usePaginate = (options = {}) => {
-  const { perPage = 10 } = options;
+  const { perPage = 10, page = 1, itemsCount = 0 } = options;
   const enablePagination = options?.pagination !== false;
 
   const [paginationState, setPaginationState] = useState({
+    itemCount: totalItemsCount,
     perPage,
-    page: 1,
+    page,
   });
   const setPagination = (newState) =>
     setPaginationState({
@@ -16,26 +17,19 @@ const usePaginate = (options = {}) => {
 
   const onSetPage = (_, page) => setPagination({ ...paginationState, page });
 
-  const onPerPageSelect = (_, perPage) => setPagination({ page: 1, perPage });
-
-  const paginator = (items) => {
-    const { page, perPage } = paginationState;
-    const start = (page - 1) * perPage;
-    const end = start + perPage;
-
-    return items.slice(start, end);
-  };
+  const onPerPageSelect = (_, perPage) => setPagination({ ...paginationState, page: 1, perPage });
 
   const setPage = (page) => {
     const nextPage = page < 0 ? paginationState.page + page : page;
     setPagination({
+      ...paginationState,
       page: nextPage > 0 ? nextPage : 1,
     });
   };
 
   return enablePagination
     ? {
-        paginator,
+        pagination: paginationState,
         setPage,
         toolbarProps: {
           pagination: {

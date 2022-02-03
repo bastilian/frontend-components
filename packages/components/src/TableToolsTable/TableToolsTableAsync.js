@@ -4,10 +4,10 @@ import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import { Table, TableBody, TableHeader } from '@patternfly/react-table';
 import PrimaryToolbar from '../PrimaryToolbar';
 import TableToolbar from '../TableToolbar';
-import useTableTools from '@redhat-cloud-services/frontend-components-utilities/useTableTools';
+import { useTableToolsAsync } from '@redhat-cloud-services/frontend-components-utilities/useTableTools';
 
-const TableToolsTable = ({ items = [], columns = [], filters = [], options = {}, toolbarProps: toolbarPropsProp, ...tablePropsRest }) => {
-  const { toolbarProps, tableProps, ColumnManager } = useTableTools(items, columns, {
+const TableToolsTable = ({ getItems, columns = [], filters = [], options = {}, toolbarProps: toolbarPropsProp, ...tablePropsRest }) => {
+  const { toolbarProps, tableProps, ColumnManager } = useTableToolsAsync(getItems, columns, {
     filters,
     toolbarProps: toolbarPropsProp,
     tableProps: tablePropsRest,
@@ -33,7 +33,7 @@ const TableToolsTable = ({ items = [], columns = [], filters = [], options = {},
 };
 
 TableToolsTable.propTypes = {
-  items: propTypes.array.isRequired,
+  getItems: propTypes.func.isRequired,
   columns: propTypes.arrayOf(
     propTypes.shape({
       title: propTypes.node,

@@ -17,6 +17,7 @@ const addSortableTransform = (columns) =>
 const columnOffset = (options = {}) => (typeof options.onSelect === 'function') + (typeof options.detailsComponent !== 'undefined');
 
 const useTableSort = (columns, options = {}) => {
+  const sortableColumns = addSortableTransform(columns);
   const [sortBy, setSortBy] = useState(
     options.sortBy || {
       index: 0,
@@ -28,25 +29,25 @@ const useTableSort = (columns, options = {}) => {
       index,
       direction,
     });
-  const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
-  // TODO This "sorter" is only used when/with items and should be moved down
-  const sorter = (items) =>
-    currentSortableColumn?.sortByArray
-      ? orderByArray(items, currentSortableColumn?.sortByProp, currentSortableColumn?.sortByArray, sortBy.direction)
-      : orderArrayByProp(currentSortableColumn?.sortByProp || currentSortableColumn?.sortByFunction, items, sortBy.direction);
 
   return {
-    sorter,
+    sortableColumns,
+    sortBy,
     tableProps: {
       onSort,
       sortBy,
-      cells: addSortableTransform(columns),
+      cells: sortableColumns,
     },
   };
 };
 
 export const useTableSortWithItems = (items, columns, options) => {
-  const { tableProps, sorter } = useTableSort(columns, options);
+  const { tableProps, sortBy } = useTableSort(columns, options);
+  const currentSortableColumn = columns[sortBy.index - columnOffset(options)];
+  const sorter = (items) =>
+    currentSortableColumn?.sortByArray
+      ? orderByArray(items, currentSortableColumn?.sortByProp, currentSortableColumn?.sortByArray, sortBy.direction)
+      : orderArrayByProp(currentSortableColumn?.sortByProp || currentSortableColumn?.sortByFunction, items, sortBy.direction);
 
   return {
     tableProps: {
